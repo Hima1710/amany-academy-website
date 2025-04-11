@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أماني سعيد - تعليم الثانوية</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=12499&format=png&color=000000" type="image/png">
+    <style>
+        :root {
+            --primary-color: #009688;
+            --secondary-color: #00796b;
+            --accent-color: #4db6ac;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-accent: #e0f2f1;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        body.dark-mode {
+            --primary-color: #80cbc4;
+            --secondary-color: #4db6ac;
+            --accent-color: #26a69a;
+            --text-primary: #eceff1;
+            --text-secondary: #b0bec5;
+            --bg-primary: #263238;
+            --bg-secondary: #37474f;
+            --bg-accent: #455a64;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: var(--bg-accent);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 100px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 80%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Study Materials Section Styles */
+        .subject-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            height: 100%;
+            border: 1px solid var(--bg-accent);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .subject-card h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .subject-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .course-card img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .course-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .course-card .card-body {
+            padding: 25px;
+        }
+
+        .course-card .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .subject-item {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--bg-accent);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .subject-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .subject-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .subject-item h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .why-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--bg-accent);
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .why-card i {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: all var(--transition-normal);
+        }
+
+        .why-card:hover i {
+            transform: scale(1.1) rotate(10deg);
+            color: var(--secondary-color);
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 40px 0;
+        }
+
+        .search-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-accent), var(--bg-secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/></svg>') center/50px 50px;
+            opacity: 0.1;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            transform: translateY(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .search-box:focus-within {
+            transform: translateY(-5px);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 20px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            background: var(--bg-primary);
+            font-size: 1.1rem;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.1);
+            outline: none;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .search-tag {
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        body.dark-mode .navbar {
+            background-color: rgba(44, 62, 80, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .navbar.scrolled {
+            background-color: rgba(44, 62, 80, 0.98);
+        }
+
+        body.dark-mode .course-card {
+            background: #2c3e50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .course-card .card-title {
+            color: #00d4ff;
+        }
+
+        body.dark-mode .subject-item {
+            background: #2c3e50;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .subject-item h5 {
+            color: #00d4ff;
+        }
+
+        body.dark-mode .subject-item p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .why-card {
+            background: #2c3e50;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .why-card h5 {
+            color: #00d4ff;
+        }
+
+        body.dark-mode .why-card p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .modal-content {
+            background: #2c3e50;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .modal-content .form-control {
+            background: #34495e;
+            color: #e0e0e0;
+            border: 1px solid #4a6278;
+        }
+
+        body.dark-mode .three-d-container {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .three-d-control .btn {
+            background-color: #00d4ff;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background-color: #4a6278;
+        }
+
+        body.dark-mode .developer-section {
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+        }
+
+        body.dark-mode .developer-card {
+            background: #2c3e50;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .developer-image {
+            border-color: #2c3e50;
+        }
+
+        body.dark-mode .developer-card:hover .developer-image {
+            transform: scale(1.1);
+            border-color: #00d4ff;
+        }
+
+        body.dark-mode .developer-title {
+            color: #00d4ff;
+        }
+
+        body.dark-mode .developer-description {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .social-link {
+            background: #1a252f;
+            color: #00d4ff;
+        }
+
+        body.dark-mode .social-link:hover {
+            background: #00d4ff;
+            color: #1a252f;
+        }
+
+        body.dark-mode .developer-name {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes imageFade {
+            from { opacity: 0; }
+            to { opacity: 0.9; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            .course-card img { height: 180px; }
+            .three-d-container { height: 250px; }
+            .navbar-brand { font-size: 1.5rem; }
+            .subject-item { flex-direction: column; align-items: flex-start; }
+            .subject-item img { margin-left: 0; margin-top: 15px; width: 100%; height: 200px; }
+            .search-input {
+                padding: 15px 50px 15px 15px;
+                font-size: 1rem;
+            }
+            
+            .search-button {
+                padding: 12px 20px;
+            }
+            
+            .search-tag {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .news-section {
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            height: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .news-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .news-date .day {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .news-date .month {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .news-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .news-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all var(--transition-fast);
+        }
+
+        .news-link:hover {
+            color: var(--secondary-color);
+            transform: translateX(-5px);
+        }
+
+        .news-link::after {
+            content: '←';
+            transition: transform var(--transition-fast);
+        }
+
+        .news-link:hover::after {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .news-card {
+                margin-bottom: 30px;
+            }
+            
+            .news-image img {
+                height: 180px;
+            }
+            
+            .news-date {
+                padding: 8px;
+            }
+            
+            .news-date .day {
+                font-size: 1.2rem;
+            }
+            
+            .news-content {
+                padding: 20px;
+            }
+            
+            .news-content h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .rating {
+            color: #ffc107;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .course-meta i {
+            color: var(--primary-color);
+        }
+
+        .quick-access {
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quick-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--bg-accent);
+            cursor: pointer;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .quick-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .quick-card h5 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .lesson-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            height: 100%;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lesson-thumbnail {
+            position: relative;
+        }
+
+        .lesson-thumbnail img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .lesson-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .lesson-content {
+            padding: 20px;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .lesson-subject {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .lesson-date {
+            color: var(--text-secondary);
+        }
+
+        .lesson-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .lesson-desc {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .subject-grid-card {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--bg-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-grid-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .subject-grid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .subject-grid-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .subject-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all var(--transition-normal);
+        }
+
+        .subject-icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            transition: all var(--transition-normal);
+        }
+
+        .subject-grid-card:hover .subject-icon {
+            background: var(--primary-color);
+        }
+
+        .subject-grid-card:hover .subject-icon i {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .subject-grid-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .subject-grid-card p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-image {
+                margin-top: 30px;
+            }
+            
+            .quick-card {
+                margin-bottom: 20px;
+            }
+            
+            .subject-grid-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">أماني سعيد</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#courses" data-translate="courses">الدورات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#subjects" data-translate="subjects">اختر مادتك</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why-us" data-translate="whyUs">لماذا نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-translate="login">تسجيل الدخول</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white px-4" href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-translate="signup">إنشاء حساب</a></li>
+                    <li class="nav-item">
+                        <i id="themeToggle" class="theme-toggle fas fa-moon"></i>
+                    </li>
+                    <li class="nav-item">
+                        <button id="languageToggle" class="language-switch">
+                            <i class="fas fa-globe"></i>
+                            <span>English</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="mb-4" data-translate="welcome">مرحبًا بك مع أماني سعيد</h1>
+                    <p class="mb-4" data-translate="description">تعلم الكيمياء والفيزياء والعلوم المتكاملة بأسلوب تفاعلي لطلاب الثانوية!</p>
+                    <div class="hero-buttons">
+                        <a href="#courses" class="btn btn-light btn-lg me-3" data-translate="startLearning">ابدأ رحلتك التعليمية</a>
+                        <a href="#subjects" class="btn btn-outline-light btn-lg" data-translate="browseSubjects">تصفح المواد</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="https://img.icons8.com/color/480/000000/student-female.png" alt="طالبة" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="quick-card">
+                        <i class="fas fa-book"></i>
+                        <h5>المذكرات</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-card">
+                        <i class="fas fa-video"></i>
+                        <h5>الفيديوهات</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-card">
+                        <i class="fas fa-tasks"></i>
+                        <h5>الواجبات</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h5>بنك الأسئلة</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Lessons Section -->
+    <section class="latest-lessons py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">أحدث الدروس</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="lesson-card">
+                        <div class="lesson-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400" alt="درس الكيمياء">
+                            <span class="lesson-duration"><i class="far fa-clock"></i> 45 دقيقة</span>
+                        </div>
+                        <div class="lesson-content">
+                            <div class="lesson-meta">
+                                <span class="lesson-subject">الكيمياء</span>
+                                <span class="lesson-date">15 مايو</span>
+                            </div>
+                            <h3 class="lesson-title">التفاعلات الكيميائية</h3>
+                            <p class="lesson-desc">شرح مفصل للتفاعلات الكيميائية وأنواعها المختلفة</p>
+                            <a href="#" class="btn btn-primary btn-sm">مشاهدة الدرس</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="lesson-card">
+                        <div class="lesson-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=400" alt="درس الفيزياء">
+                            <span class="lesson-duration"><i class="far fa-clock"></i> 35 دقيقة</span>
+                        </div>
+                        <div class="lesson-content">
+                            <div class="lesson-meta">
+                                <span class="lesson-subject">الفيزياء</span>
+                                <span class="lesson-date">14 مايو</span>
+                            </div>
+                            <h3 class="lesson-title">قوانين نيوتن للحركة</h3>
+                            <p class="lesson-desc">شرح تفصيلي لقوانين نيوتن الثلاثة للحركة مع الأمثلة</p>
+                            <a href="#" class="btn btn-primary btn-sm">مشاهدة الدرس</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">عرض جميع الدروس</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4" data-translate="searchTitle">ابحث عن الدروس والمواد التعليمية</h2>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="ابحث عن درس، مادة، أو موضوع..." data-translate="searchPlaceholder">
+                        <button class="search-button">
+                            <i class="fas fa-search"></i>
+                            <span data-translate="search">بحث</span>
+                        </button>
+                    </div>
+                    <div class="search-tags mt-4">
+                        <span class="search-tag" data-subject="chemistry">الكيمياء</span>
+                        <span class="search-tag" data-subject="physics">الفيزياء</span>
+                        <span class="search-tag" data-subject="science">العلوم المتكاملة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight: 700;">دوراتنا التعليمية</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card course-card">
+                        <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&w=400" class="card-img-top" alt="كيمياء">
+                        <div class="card-body">
+                            <h5 class="card-title" data-translate="chemistry">الكيمياء</h5>
+                            <p class="card-text" data-translate="chemistryDesc">استكشف الجزيئات والتفاعلات مع نماذج 3D تفاعلية.</p>
+                            <a href="#" class="btn btn-primary" data-translate="startNow">ابدأ الآن</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card course-card">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=400" class="card-img-top" alt="فيزياء">
+                        <div class="card-body">
+                            <h5 class="card-title" data-translate="physics">الفيزياء</h5>
+                            <p class="card-text" data-translate="physicsDesc">فهم قوانين الحركة والطاقة بتجارب عملية.</p>
+                            <a href="#" class="btn btn-primary" data-translate="startNow">ابدأ الآن</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card course-card">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400" class="card-img-top" alt="علوم متكاملة">
+                        <div class="card-body">
+                            <h5 class="card-title" data-translate="science">العلوم المتكاملة</h5>
+                            <p class="card-text" data-translate="scienceDesc">تعلم العلوم بأسلوب شامل وممتع.</p>
+                            <a href="#" class="btn btn-primary" data-translate="startNow">ابدأ الآن</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subject Selection Section -->
+    <section id="subjects" class="subject-selection">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight: 700;">اختر مادتك</h2>
+            <div class="subject-item">
+                <div class="content">
+                    <h5 data-translate="physicsPrep">الفيزياء</h5>
+                    <p data-translate="physicsPrep">استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية.</p>
+                    <a href="#" class="btn" data-translate="start">ابدأ</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=150" alt="فيزياء">
+            </div>
+            <div class="subject-item">
+                <div class="content">
+                    <h5 data-translate="chemistryPrep">الكيمياء</h5>
+                    <p data-translate="chemistryPrep">استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية مع 3D.</p>
+                    <a href="#" class="btn" data-translate="start">ابدأ</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&w=150" alt="كيمياء">
+            </div>
+            <div class="subject-item">
+                <div class="content">
+                    <h5 data-translate="sciencePrep">العلوم المتكاملة</h5>
+                    <p data-translate="sciencePrep">استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية.</p>
+                    <a href="#" class="btn" data-translate="start">ابدأ</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=150" alt="علوم متكاملة">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-choose-us">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-weight: 700;" data-translate="whyChooseUs">لماذا تختار أماني سعيد؟</h2>
+            <div class="row">
+                <div class="col-md-4 why-card">
+                    <i class="fas fa-flask"></i>
+                    <h5 data-translate="interactiveLessons">دروس تفاعلية</h5>
+                    <p data-translate="interactiveLessonsDesc">تعلم مع فيديوهات ونماذج ثلاثية الأبعاد ممتعة.</p>
+                </div>
+                <div class="col-md-4 why-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h5 data-translate="professionalContent">محتوى احترافي</h5>
+                    <p data-translate="professionalContentDesc">منهج الثانوية مغطى بأسلوب مبسط وشامل.</p>
+                </div>
+                <div class="col-md-4 why-card">
+                    <i class="fas fa-clock"></i>
+                    <h5 data-translate="flexibleLearning">مرونة التعلم</h5>
+                    <p data-translate="flexibleLearningDesc">ادرس في أي وقت ومن أي مكان.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Animation Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" style="font-weight: 700;" data-translate="discover3D">اكتشف الكيمياء بتقنية 3D</h2>
+            <p class="text-center mb-4" data-translate="try3D">جرب نموذجًا ثلاثي الأبعاد للذرات والروابط الكيميائية!</p>
+            <div id="three-d-container" class="three-d-container"></div>
+            <div class="three-d-control">
+                <button id="toggleRotation" class="btn" data-translate="stopRotation">إيقاف الدوران</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-translate="newsTitle">آخر الأخبار والتحديثات</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400" alt="تحديث المنهج">
+                            <div class="news-date">
+                                <span class="day">15</span>
+                                <span class="month">مايو</span>
+                            </div>
+                        </div>
+                        <div class="news-content">
+                            <h3 data-translate="newsTitle1">تحديث المنهج الدراسي</h3>
+                            <p data-translate="newsDesc1">تم إضافة دروس جديدة في الكيمياء والفيزياء مع نماذج ثلاثية الأبعاد تفاعلية.</p>
+                            <a href="#" class="news-link" data-translate="readMore">اقرأ المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400" alt="ورشة عمل">
+                            <div class="news-date">
+                                <span class="day">10</span>
+                                <span class="month">مايو</span>
+                            </div>
+                        </div>
+                        <div class="news-content">
+                            <h3 data-translate="newsTitle2">ورشة عمل تفاعلية</h3>
+                            <p data-translate="newsDesc2">ورشة عمل أونلاين لشرح التجارب العملية في الفيزياء والكيمياء.</p>
+                            <a href="#" class="news-link" data-translate="readMore">اقرأ المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=400" alt="مسابقة">
+                            <div class="news-date">
+                                <span class="day">5</span>
+                                <span class="month">مايو</span>
+                            </div>
+                        </div>
+                        <div class="news-content">
+                            <h3 data-translate="newsTitle3">مسابقة علمية</h3>
+                            <p data-translate="newsDesc3">مسابقة في العلوم والرياضيات مع جوائز قيمة للفائزين.</p>
+                            <a href="#" class="news-link" data-translate="readMore">اقرأ المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" style="font-weight: 700;" data-translate="login">تسجيل الدخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label" data-translate="email">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label" data-translate="password">كلمة المرور</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="أدخل كلمة المرور" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" data-translate="login">تسجيل الدخول</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" style="font-weight: 700;" data-translate="signup">إنشاء حساب</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <label for="signupName" class="form-label" data-translate="fullName">الاسم الكامل</label>
+                            <input type="text" class="form-control" id="signupName" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label" data-translate="email">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label" data-translate="password">كلمة المرور</label>
+                            <input type="password" class="form-control" id="signupPassword" placeholder="أدخل كلمة المرور" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupGrade" class="form-label" data-translate="grade">الصف الدراسي</label>
+                            <select class="form-select" id="signupGrade" required>
+                                <option value="" disabled selected data-translate="chooseGrade">اختر الصف</option>
+                                <option value="1" data-translate="firstGrade">الأول الثانوي</option>
+                                <option value="2" data-translate="secondGrade">الثاني الثانوي</option>
+                                <option value="3" data-translate="thirdGrade">الثالث الثانوي</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" data-translate="signup">إنشاء حساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developer Section -->
+    <section class="developer-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <div class="developer-card">
+                        <img src="https://avatars.githubusercontent.com/u/default" alt="Ibrahim" class="developer-image">
+                        <h3 class="mt-4 mb-3" data-translate="developerName">إبراهيم</h3>
+                        <p class="developer-title mb-3" data-translate="developerTitle">مطور ويب ومصمم واجهات المستخدم</p>
+                        <p class="developer-description mb-4" data-translate="developerDesc">مطور متخصص في تطوير المواقع التعليمية وتصميم تجارب المستخدم المميزة</p>
+                        <div class="social-links">
+                            <a href="https://github.com/yourusername" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:your.email@example.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p data-translate="rights">© 2025 أماني سعيد. جميع الحقوق محفوظة.</p>
+            <p><span data-translate="developer">تم التطوير بواسطة</span> <span class="developer-name">إبراهيم</span></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Language Toggle
+        const languageToggle = document.getElementById('languageToggle');
+        const languageText = languageToggle.querySelector('span');
+        let isArabic = true;
+
+        const translations = {
+            ar: {
+                courses: 'الدورات',
+                subjects: 'اختر مادتك',
+                whyUs: 'لماذا نحن',
+                login: 'تسجيل الدخول',
+                signup: 'إنشاء حساب',
+                startLearning: 'ابدأ رحلتك التعليمية',
+                welcome: 'مرحبًا بك مع أماني سعيد',
+                description: 'تعلم الكيمياء والفيزياء والعلوم المتكاملة بأسلوب تفاعلي لطلاب الثانوية!',
+                chemistry: 'الكيمياء',
+                physics: 'الفيزياء',
+                science: 'العلوم المتكاملة',
+                startNow: 'ابدأ الآن',
+                chemistryDesc: 'استكشف الجزيئات والتفاعلات مع نماذج 3D تفاعلية',
+                physicsDesc: 'فهم قوانين الحركة والطاقة بتجارب عملية',
+                scienceDesc: 'تعلم العلوم بأسلوب شامل وممتع',
+                chooseSubject: 'اختر مادتك',
+                physicsPrep: 'استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية',
+                chemistryPrep: 'استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية مع 3D',
+                sciencePrep: 'استعد للامتحانات مع أفضل الشروحات ومقاطع الفيديو التعليمية',
+                start: 'ابدأ',
+                whyChooseUs: 'لماذا تختار أماني سعيد؟',
+                interactiveLessons: 'دروس تفاعلية',
+                interactiveLessonsDesc: 'تعلم مع فيديوهات ونماذج ثلاثية الأبعاد ممتعة',
+                professionalContent: 'محتوى احترافي',
+                professionalContentDesc: 'منهج الثانوية مغطى بأسلوب مبسط وشامل',
+                flexibleLearning: 'مرونة التعلم',
+                flexibleLearningDesc: 'ادرس في أي وقت ومن أي مكان',
+                discover3D: 'اكتشف الكيمياء بتقنية 3D',
+                try3D: 'جرب نموذجًا ثلاثي الأبعاد للذرات والروابط الكيميائية!',
+                stopRotation: 'إيقاف الدوران',
+                startRotation: 'تشغيل الدوران',
+                fullName: 'الاسم الكامل',
+                email: 'البريد الإلكتروني',
+                password: 'كلمة المرور',
+                grade: 'الصف الدراسي',
+                chooseGrade: 'اختر الصف',
+                firstGrade: 'الأول الثانوي',
+                secondGrade: 'الثاني الثانوي',
+                thirdGrade: 'الثالث الثانوي',
+                enterEmail: 'أدخل بريدك الإلكتروني',
+                enterPassword: 'أدخل كلمة المرور',
+                enterFullName: 'أدخل اسمك الكامل',
+                rights: 'جميع الحقوق محفوظة',
+                developer: 'تم التطوير بواسطة',
+                developerName: 'إبراهيم',
+                developerTitle: 'مطور ويب ومصمم واجهات المستخدم',
+                developerDesc: 'مطور متخصص في تطوير المواقع التعليمية وتصميم تجارب المستخدم المميزة'
+            },
+            en: {
+                courses: 'Courses',
+                subjects: 'Choose Subject',
+                whyUs: 'Why Us',
+                login: 'Login',
+                signup: 'Sign Up',
+                startLearning: 'Start Learning',
+                welcome: 'Welcome to Amany Said',
+                description: 'Learn Chemistry, Physics, and Integrated Sciences interactively for high school students!',
+                chemistry: 'Chemistry',
+                physics: 'Physics',
+                science: 'Integrated Science',
+                startNow: 'Start Now',
+                chemistryDesc: 'Explore molecules and reactions with 3D interactive models',
+                physicsDesc: 'Understand motion laws and energy with practical experiments',
+                scienceDesc: 'Learn science in a comprehensive and fun way',
+                chooseSubject: 'Choose Your Subject',
+                physicsPrep: 'Prepare for exams with the best explanations and educational videos',
+                chemistryPrep: 'Prepare for exams with the best explanations and 3D educational videos',
+                sciencePrep: 'Prepare for exams with the best explanations and educational videos',
+                start: 'Start',
+                whyChooseUs: 'Why Choose Amany Said?',
+                interactiveLessons: 'Interactive Lessons',
+                interactiveLessonsDesc: 'Learn with videos and fun 3D models',
+                professionalContent: 'Professional Content',
+                professionalContentDesc: 'High school curriculum covered in a simple and comprehensive way',
+                flexibleLearning: 'Flexible Learning',
+                flexibleLearningDesc: 'Study anytime, anywhere',
+                discover3D: 'Discover Chemistry in 3D',
+                try3D: 'Try a 3D model of atoms and chemical bonds!',
+                stopRotation: 'Stop Rotation',
+                startRotation: 'Start Rotation',
+                fullName: 'Full Name',
+                email: 'Email',
+                password: 'Password',
+                grade: 'Grade',
+                chooseGrade: 'Choose Grade',
+                firstGrade: '1st Grade',
+                secondGrade: '2nd Grade',
+                thirdGrade: '3rd Grade',
+                enterEmail: 'Enter your email',
+                enterPassword: 'Enter your password',
+                enterFullName: 'Enter your full name',
+                rights: 'All Rights Reserved',
+                developer: 'Developed by',
+                developerName: 'Ibrahim',
+                developerTitle: 'Web Developer & UI Designer',
+                developerDesc: 'Specialized in developing educational websites and creating exceptional user experiences'
+            }
+        };
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // تحديث اتجاه الصفحة والتنسيقات
+            document.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            // تحديث الأزرار والعناصر الأخرى
+            const navbar = document.querySelector('.navbar-nav');
+            if (lang === 'ar') {
+                navbar.classList.remove('ms-auto');
+                navbar.classList.add('me-auto');
+            } else {
+                navbar.classList.remove('me-auto');
+                navbar.classList.add('ms-auto');
+            }
+            
+            // تحديث نص زر اللغة
+            languageText.textContent = lang === 'ar' ? 'English' : 'العربية';
+            
+            // حفظ اختيار اللغة
+            localStorage.setItem('language', lang);
+        }
+
+        languageToggle.addEventListener('click', () => {
+            isArabic = !isArabic;
+            const lang = isArabic ? 'ar' : 'en';
+            updateLanguage(lang);
+        });
+
+        // Initialize language from localStorage
+        const savedLanguage = localStorage.getItem('language') || 'ar';
+        updateLanguage(savedLanguage);
+        isArabic = savedLanguage === 'ar';
+
+        // Form Validation (Demo Alerts)
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (email && password) {
+                alert('تم تسجيل الدخول بنجاح (تجربة)!');
+                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+            } else {
+                alert('يرجى ملء جميع الحقول!');
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const grade = document.getElementById('signupGrade').value;
+            if (name && email && password && grade) {
+                alert('تم إنشاء الحساب بنجاح (تجربة)!');
+                bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
+            } else {
+                alert('يرجى ملء جميع الحقول!');
+            }
+        });
+
+        // Three.js 3D Animation (Simple Molecule-like Structure)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 700 / 350, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(700, 350);
+        document.getElementById('three-d-container').appendChild(renderer.domElement);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 0.8);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+
+        // Molecule-like structure (3 atoms + bonds)
+        const atomGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+        const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 2, 16);
+
+        // Atom 1 (Red)
+        const atomMaterial1 = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+        const atom1 = new THREE.Mesh(atomGeometry, atomMaterial1);
+        atom1.position.set(0, 0, 0);
+        scene.add(atom1);
+
+        // Atom 2 (Blue)
+        const atomMaterial2 = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+        const atom2 = new THREE.Mesh(atomGeometry, atomMaterial2);
+        atom2.position.set(2, 0, 0);
+        scene.add(atom2);
+
+        // Atom 3 (Green)
+        const atomMaterial3 = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+        const atom3 = new THREE.Mesh(atomGeometry, atomMaterial3);
+        atom3.position.set(1, 1.732, 0);
+        scene.add(atom3);
+
+        // Bonds
+        const bondMaterial = new THREE.MeshPhongMaterial({ color: 0xcccccc });
+        const bond1 = new THREE.Mesh(bondGeometry, bondMaterial);
+        bond1.position.set(1, 0, 0);
+        bond1.rotation.z = Math.PI / 2;
+        scene.add(bond1);
+
+        const bond2 = new THREE.Mesh(bondGeometry, bondMaterial);
+        bond2.position.set(0.5, 0.866, 0);
+        bond2.rotation.z = -Math.PI / 3;
+        scene.add(bond2);
+
+        const bond3 = new THREE.Mesh(bondGeometry, bondMaterial);
+        bond3.position.set(1.5, 0.866, 0);
+        bond3.rotation.z = Math.PI / 3;
+        scene.add(bond3);
+
+        // Group for rotation
+        const molecule = new THREE.Group();
+        molecule.add(atom1, atom2, atom3, bond1, bond2, bond3);
+        scene.add(molecule);
+
+        // Orbit controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        camera.position.z = 5;
+
+        let isRotating = true;
+        function animate() {
+            requestAnimationFrame(animate);
+            if (isRotating) {
+                molecule.rotation.y += 0.01;
+            }
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Toggle Rotation
+        document.getElementById('toggleRotation').addEventListener('click', () => {
+            isRotating = !isRotating;
+            const button = document.getElementById('toggleRotation');
+            button.setAttribute('data-translate', isRotating ? 'stopRotation' : 'startRotation');
+            updateLanguage(document.documentElement.lang);
+        });
+
+        // Responsive 3D Canvas
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth > 768 ? 700 : window.innerWidth - 40;
+            renderer.setSize(width, 350);
+            camera.aspect = width / 350;
+            camera.updateProjectionMatrix();
+        });
+
+        // Search Functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchTags = document.querySelectorAll('.search-tag');
+        
+        searchTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const subject = tag.getAttribute('data-subject');
+                searchInput.value = tag.textContent;
+                searchInput.focus();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            // هنا يمكن إضافة منطق البحث الفعلي
+            console.log('Searching for:', e.target.value);
+        });
+    </script>
+</body>
+</html>
